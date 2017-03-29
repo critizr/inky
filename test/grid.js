@@ -16,7 +16,7 @@ describe('Container', () => {
       <html>
         <head></head>
         <body>
-          <table class="container">
+          <table align="center" class="container">
             <tbody>
               <tr>
                 <td></td>
@@ -32,7 +32,7 @@ describe('Container', () => {
   it('creates a container table', () => {
     var input = '<container></container>';
     var expected = `
-      <table class="container">
+      <table align="center" class="container">
         <tbody>
           <tr>
             <td></td>
@@ -274,16 +274,22 @@ describe('Grid', () => {
   });
 
   it('transfers attributes to the final HTML', () => {
-    var input = '<columns dir="rtl" valign="middle">One</columns>';
+    var input = '<row dir="rtl"><columns dir="rtl" valign="middle" align="center">One</columns></row>';
     var expected = `
-      <th class="small-12 large-12 columns first last" dir="rtl" valign="middle">
-        <table>
+      <table dir="rtl" class="row">
+        <tbody>
           <tr>
-            <th>One</th>
-            <th class="expander"></th>
+            <th class="small-12 large-12 columns first last" dir="rtl" valign="middle" align="center">
+              <table>
+                <tr>
+                  <th>One</th>
+                  <th class="expander"></th>
+                </tr>
+              </table>
+            </th>
           </tr>
-        </table>
-      </th>
+        </tbody>
+      </table>
     `;
 
     compare(input, expected)
